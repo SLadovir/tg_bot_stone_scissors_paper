@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import asyncio
+import logging
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from aiogram import Bot, Dispatcher
+
+from config_data.config import Config, load_config
+from handlers.user_handlers import register_user_handlers
+from handlers.other_handlers import register_other_handlers
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Инициализируем логгер
+logger = logging.getLogger(__name__)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Фнукция для регистрации всех хэндлеров
+def register_all_handlers(dp: Dispatcher) -> None:
+    register_user_handlers(dp)
+    register_other_handlers(dp)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
